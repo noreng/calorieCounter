@@ -3,7 +3,7 @@
 var nameField, inputFields, submitButton;
 var request = new Request();
 
-nameField = document.querySelector('#mealName');
+nameField = document.querySelector('#meal-name');
 inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
 
@@ -22,7 +22,8 @@ function getInputValues() {
   var values = {};
   for (var i = 0; i < inputFields.length; i++) {
     var input = inputFields[i];
-    values[input.id] = input.value;
+    var attributes = input.getAttribute('data-meal-id');
+    values[attributes] = input.value;
   }
   return values;
 }

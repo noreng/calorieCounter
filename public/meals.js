@@ -7,9 +7,9 @@ var Meal = function (name, calories, date) {
 }
 
 function createMealItem(values) {
-  var name = values.mealName;
-  var calories = values.mealCalorie;
-  var date = values.mealDate + ':' + values.mealTime;
+  var name = values.name;
+  var calories = values.calories;
+  var date = values.date + ':' + values.time;
   var meal = new Meal(name, calories, date);
   return meal;
 }
