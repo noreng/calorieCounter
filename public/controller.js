@@ -1,9 +1,8 @@
 'use strict';
 
-var nameField, inputFields, submitButton;
+var inputFields, submitButton;
 var request = new Request();
 
-nameField = document.querySelector('#meal-name');
 inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
 
@@ -14,8 +13,7 @@ function submitMeal(event) {
   var values = getInputValues();
   var meal = createMealItem(values);
   request.postItemToServer(meal);
-  deleteInputValues();
-  nameField.focus();
+  resetInputValues();
 }
 
 function getInputValues() {
@@ -28,9 +26,10 @@ function getInputValues() {
   return values;
 }
 
-function deleteInputValues() {
+function resetInputValues() {
   for (var i = 0; i < inputFields.length; i++) {
     var input = inputFields[i];
     input.value = '';
+    if (i === 0) input.focus();
   }
 }
