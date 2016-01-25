@@ -10,21 +10,12 @@ submitButton = document.querySelector('#btn-submit');
 submitButton.addEventListener('click', submitMeal);
 
 function submitMeal(event) {
-  var meal = createMealItem();
+  event.preventDefault();
+  var values = getInputValues();
+  var meal = createMealItem(values);
   request.postItemToServer(meal);
   deleteInputValues();
   nameField.focus();
-  event.preventDefault();
-}
-
-function createMealItem() {
-  var values = getInputValues();
-  var item = {
-    'name': values.mealName,
-    'calories': values.mealCalorie,
-    'date': values.mealDate + ':' + values.mealTime
-  };
-  return item;
 }
 
 function getInputValues() {
