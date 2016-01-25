@@ -35,8 +35,17 @@ function addMeal(attributes, callback) {
   });
 }
 
+function removeMeal(id, callback) {
+  var sql = 'DELETE FROM `meals` WHERE `meal_id`= ?';
+  connection.query(sql, id, function(err, res) {
+    if (err) throw err;
+    callback(res);
+  });
+}
+
 module.exports = {
   getMeals: getMeals,
   getMealById: getMealById,
-  addMeal: addMeal
+  addMeal: addMeal,
+  removeMeal: removeMeal
 };
