@@ -19,6 +19,14 @@ function getMeals(callback) {
   });
 }
 
+function getMealById(id, callback) {
+  var sql = 'SELECT meal_id, name, calories, date FROM `meals` WHERE meal_id=?';
+  connection.query(sql, id, function(err, res) {
+    if (err) throw err;
+    callback(res);
+  });
+}
+
 function addMeal(attributes, callback) {
   var sql = 'INSERT INTO `meals` SET ?';
   connection.query(sql, attributes, function(err, res) {
@@ -29,5 +37,6 @@ function addMeal(attributes, callback) {
 
 module.exports = {
   getMeals: getMeals,
+  getMealById: getMealById,
   addMeal: addMeal
 };

@@ -19,9 +19,25 @@ app.get('/meals', function (req, res) {
   });
 });
 
+app.get('/meals/:id', function (req, res) {
+  findMeal(req, res, function (meal) { res.json(meal); });
+});
+
 app.post('/meals', function (req, res) {
   var attributes = req.body;
   database.addMeal(attributes, function (sqlres) {
     res.status(200).json({'status': 'ok'});
   });
 });
+
+function findMeal(req, res, callback) {
+  var id = parseInt(req.params.id);
+  database.getMealById(id, function (mealsArray) {
+    var meal = mealsArray[0];
+    if (meal) {
+      callback(meal);
+    } else {
+      res.status(401).json( {status: 'not exists'} );
+    }
+  });
+}
