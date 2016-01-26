@@ -11,17 +11,18 @@
     <div class="container">
       <div class="col-md-4">
         <h3>Calorie Counter</h3>
-        <input type="text" class="form-control" data-meal-id="name" placeholder="Name your meal" autofocus=""/>
-        <input type="number" class="form-control" data-meal-id="calories" placeholder="Calories" min="0"/>
-        <input type="number" class="form-control" data-meal-id="year"/>
-        <input type="number" class="form-control" data-meal-id="month"/>
-        <input type="number" class="form-control" data-meal-id="day"/>
-        <input type="number" class="form-control" data-meal-id="hour"/>
-        <input type="number" class="form-control" data-meal-id="minutes"/>
+        <input type="text" class="form-control" data-meal="name" placeholder="Name your meal" autofocus=""/>
+        <input type="number" class="form-control" data-meal="calories" placeholder="Calories" min="0"/>
+        <input type="number" class="form-control" data-meal="year"/>
+        <input type="number" class="form-control" data-meal="month"/>
+        <input type="number" class="form-control" data-meal="day"/>
+        <input type="number" class="form-control" data-meal="hour"/>
+        <input type="number" class="form-control" data-meal="minutes"/>
         <button id="btn-submit" class="btn btn-primary">Add</button>
       </div>
     </div>
     <script src="httpRequests.js"></script>
+    <script src="config.js"></script>
     <script src="meals.js"></script>
     <script src="controller.js"></script>
   </body>

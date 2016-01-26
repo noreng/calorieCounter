@@ -7,6 +7,7 @@ inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
 
 submitButton.addEventListener('click', submitMeal);
+resetInputValues();
 
 function submitMeal(event) {
   event.preventDefault();
@@ -20,7 +21,7 @@ function getInputValues() {
   var values = {};
   for (var i = 0; i < inputFields.length; i++) {
     var input = inputFields[i];
-    var attributes = input.getAttribute('data-meal-id');
+    var attributes = input.getAttribute('data-meal');
     values[attributes] = input.value;
   }
   return values;
@@ -29,7 +30,8 @@ function getInputValues() {
 function resetInputValues() {
   for (var i = 0; i < inputFields.length; i++) {
     var input = inputFields[i];
-    input.value = '';
+    var attribute = input.getAttribute('data-meal');
+    input.value = inputRules[attribute].defaultValue;
     if (i === 0) input.focus();
   }
 }
