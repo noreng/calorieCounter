@@ -9,16 +9,16 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-md-4">
+      <div class="col-md-4 form">
         <h3>Calorie Counter</h3>
         <input type="text" class="form-control" data-meal="name" placeholder="Name your meal" autofocus=""/>
         <input type="number" class="form-control" data-meal="calories" placeholder="Calories" min="0"/>
         <input type="number" class="form-control" data-meal="year"/>
-        <input type="number" class="form-control" data-meal="month"/>
-        <input type="number" class="form-control" data-meal="day"/>
-        <input type="number" class="form-control" data-meal="hour"/>
-        <input type="number" class="form-control" data-meal="minutes"/>
-        <button id="btn-submit" class="btn btn-primary">Add</button>
+        <input type="number" class="form-control" data-meal="month" min="1" max="12"/>
+        <input type="number" class="form-control" data-meal="day" min="1" max="31"/>
+        <input type="number" class="form-control" data-meal="hour"  min="0" max="12"/>
+        <input type="number" class="form-control" data-meal="minutes" min="0" max="59"/>
+        <button id="btn-submit" class="btn btn-primary" disabled>Add</button>
       </div>
     </div>
     <script src="httpRequests.js"></script>

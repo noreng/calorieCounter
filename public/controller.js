@@ -1,20 +1,34 @@
 'use strict';
 
-var inputFields, submitButton;
+var form, inputFields, submitButton;
 var request = new Request();
 
+form = document.querySelector('.form');
 inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
 
+form.addEventListener("blur", validateInputs, true);
 submitButton.addEventListener('click', submitMeal);
-resetInputValues();
+
+function resetForm() {
+  resetInputValues();
+  submitButton.disabled = true;
+}
+
+function validateInputs() {
+  for (var i = 0; i < inputFields.length; i++) {
+    var input = inputFields[i];
+    if (input.value === '') submitButton.disabled = true;
+  }
+  submitButton.disabled = false;
+}
 
 function submitMeal(event) {
   event.preventDefault();
   var values = getInputValues();
   var meal = createMealItem(values);
   request.postItemToServer(meal);
-  resetInputValues();
+  resetForm();
 }
 
 function getInputValues() {
@@ -35,3 +49,5 @@ function resetInputValues() {
     if (i === 0) input.focus();
   }
 }
+
+resetForm();
