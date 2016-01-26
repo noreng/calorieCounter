@@ -15,7 +15,6 @@ function Request() {
     return this.createRequest('POST', url, data, cb);
   }
 
-
   this.createRequest = function (method, url, data, cb) {
     var req = new XMLHttpRequest();
     req.open(method, url);

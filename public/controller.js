@@ -23,14 +23,24 @@ function insertItemsToDom(items) {
 
 function addItemToDom(item) {
   var element = createOneItem(item);
-  mealsContainer.appendChild(element);
+  mealsContainer.innerHTML += element;
 }
 
 function createOneItem(item) {
-  var element = document.createElement("li");
-  element.setAttribute('id', item.meal_id);
-  element.innerText = item.name;
+  var element = `<tr>
+                   <td>${item.name}</td>
+                   <td>${item.calories}</td>
+                   <td>${convertToDate(item.date)}</td>
+                 </tr>`;
   return element;
+}
+
+function convertToDate(string) {
+  var date = new Date(string);
+  return [date.getFullYear(),
+          date.getMonth() + 1,
+          date.getDate()]
+          .join(' / ');
 }
 
 function resetForm() {

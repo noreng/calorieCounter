@@ -21,7 +21,16 @@
         <button id="btn-submit" class="btn btn-primary" disabled>Add</button>
       </div>
       <div class="col-md-12">
-        <ul class="meals-container"></ul>
+        <table class = "table">
+          <thead>
+            <tr>
+              <th>Meal name</th>
+              <th>Calorie</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody class="meals-container"></tbody>
+        </table>
       </div>
     </div>
     <script src="httpRequests.js"></script>
