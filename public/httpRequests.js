@@ -3,12 +3,18 @@
 function Request() {
   this.url = 'http://localhost:3000/';
 
+  this.getAllItems = function (cb) {
+    var url = this.url + 'meals';
+    return this.createRequest('GET', url, null, cb);
+  }
+
   this.postItemToServer = function (item) {
     var data = JSON.stringify(item);
     var url = this.url + 'meals';
     var cb = function (response) {console.log(response)};
     return this.createRequest('POST', url, data, cb);
   }
+
 
   this.createRequest = function (method, url, data, cb) {
     var req = new XMLHttpRequest();

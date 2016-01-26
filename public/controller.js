@@ -1,14 +1,37 @@
 'use strict';
 
-var form, inputFields, submitButton;
+var form, inputFields, submitButton, mealsContainer;
 var request = new Request();
 
 form = document.querySelector('.form');
 inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
+mealsContainer = document.querySelector('.meals-container');
 
 form.addEventListener("blur", validateInputs, true);
 submitButton.addEventListener('click', submitMeal);
+
+function getItemsFromServer() {
+  request.getAllItems(insertItemsToDom);
+}
+
+function insertItemsToDom(items) {
+  items.forEach(function(item) {
+    addItemToDom(item);
+  });
+}
+
+function addItemToDom(item) {
+  var element = createOneItem(item);
+  mealsContainer.appendChild(element);
+}
+
+function createOneItem(item) {
+  var element = document.createElement("li");
+  element.setAttribute('id', item.meal_id);
+  element.innerText = item.name;
+  return element;
+}
 
 function resetForm() {
   resetInputValues();
@@ -50,4 +73,5 @@ function resetInputValues() {
   }
 }
 
+getItemsFromServer();
 resetForm();
