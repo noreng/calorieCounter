@@ -11,10 +11,13 @@
     <div class="container">
       <div class="col-md-4">
         <h3>Calorie Counter</h3>
-        <input type="text" class="form-control" data-meal-id="name" placeholder="Name your meal" autofocus="" id="meal-name"/>
+        <input type="text" class="form-control" data-meal-id="name" placeholder="Name your meal" autofocus=""/>
         <input type="number" class="form-control" data-meal-id="calories" placeholder="Calories" min="0"/>
-        <input type="text" class="form-control" data-meal-id="date" placeholder="year-mm-dd"/>
-        <input type="text" class="form-control" data-meal-id="time" placeholder="hh:mm:ss"/>
+        <input type="number" class="form-control" data-meal-id="year"/>
+        <input type="number" class="form-control" data-meal-id="month"/>
+        <input type="number" class="form-control" data-meal-id="day"/>
+        <input type="number" class="form-control" data-meal-id="hour"/>
+        <input type="number" class="form-control" data-meal-id="minutes"/>
         <button id="btn-submit" class="btn btn-primary">Add</button>
       </div>
     </div>
