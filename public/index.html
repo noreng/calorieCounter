@@ -9,8 +9,9 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-md-4 form">
-        <h3>Calorie Counter</h3>
+      <h1 class="text-center">Calorie Counter</h1>
+      <div class="col-sm-4 form">
+        <h3 class="text-center header">Add new meal</h3>
         <input type="text" class="form-control" data-meal="name" placeholder="Name your meal" autofocus=""/>
         <input type="number" class="form-control" data-meal="calories" placeholder="Calories" min="0"/>
         <input type="number" class="form-control" data-meal="year"/>
@@ -18,9 +19,10 @@
         <input type="number" class="form-control" data-meal="day" min="1" max="31"/>
         <input type="number" class="form-control" data-meal="hour"  min="0" max="12"/>
         <input type="number" class="form-control" data-meal="minutes" min="0" max="59"/>
-        <button id="btn-submit" class="btn btn-primary" disabled>Add</button>
+        <button id="btn-submit" class="btn btn-primary btn-block" disabled>Add new meal</button>
       </div>
-      <div class="col-md-12">
+      <div class="col-sm-8">
+        <h3 class="text-center header">Your meals</h3>
         <table class = "table">
           <thead>
             <tr>
@@ -31,7 +33,7 @@
           </thead>
           <tbody class="meals-container"></tbody>
         </table>
-        <button id="btn-delete" class="btn btn-danger">Delete selected</button>
+        <button id="btn-delete" class="btn btn-danger center-block">Delete selected</button>
       </div>
     </div>
     <script src="httpRequests.js"></script>

@@ -1,3 +1,11 @@
 input {
   margin-bottom: 10px;
 }
+
+td, th {
+  text-align: center;
+}
+
+.header {
+  padding-bottom: 1.5em;
+}
