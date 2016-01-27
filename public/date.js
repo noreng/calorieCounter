@@ -11,7 +11,7 @@ function toLocalDateString(date) {
     ':' + pad(date.getMinutes());
 }
 
-// => yyyy / mm / dd
+// => yyyy / mm / dd hh:mm
 function formatDate(string) {
   var date = new Date(string);
   return date.getFullYear() +
