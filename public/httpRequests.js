@@ -3,31 +3,28 @@
 function Request() {
   this.url = 'http://localhost:3000/';
 
-  this.getAllItems = function (cb) {
+  this.getAll = function (cb) {
     var url = this.url + 'meals';
-    return this.createRequest('GET', url, null, cb);
+    return sendRequest('GET', url, null, cb);
   }
 
-  this.postItemToServer = function (item, cb) {
-    var data = JSON.stringify(item);
+  this.postItem = function (data, cb) {
     var url = this.url + 'meals';
-    return this.createRequest('POST', url, data, cb);
+    return sendRequest('POST', url, data, cb);
   }
 
-  this.removeItemFromServer = function (id, callback) {
+  this.removeItem = function (id, callback) {
     var url = this.url + 'meals/' + id;
-    return this.createRequest('DELETE', url, null, callback);
+    return sendRequest('DELETE', url, null, callback);
   }
+}
 
-  this.createRequest = function (method, url, data, cb) {
-    var req = new XMLHttpRequest();
-    req.open(method, url);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.send(data);
-    req.onreadystatechange = function () {
-      if (req.readyState === 4) {
-        return cb(JSON.parse(req.response));
-      }
-    };
+function sendRequest(method, url, data, cb) {
+  var req = new XMLHttpRequest();
+  req.open(method, url);
+  req.setRequestHeader('Content-Type', 'application/json');
+  req.send(data && JSON.stringify(data));
+  req.onload = function () {
+    return cb(JSON.parse(req.response));
   }
 }
