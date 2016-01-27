@@ -1,20 +1,32 @@
 'use strict';
 
-var form, inputFields, submitButton, mealsContainer;
+var form, inputFields, submitButton, deleteButton, mealsContainer;
 var request = new Request();
 
 form = document.querySelector('.form');
 inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
 mealsContainer = document.querySelector('.meals-container');
+deleteButton = document.querySelector('#btn-delete');
 
 form.addEventListener("blur", validateInputs, true);
 submitButton.addEventListener('click', submitMeal);
 mealsContainer.addEventListener('click', selectItem);
+deleteButton.addEventListener('click', removeSelectedItems);
 
 function selectItem(event) {
   var row = event.target.parentNode;
   row.classList.toggle('active');
+}
+
+function removeSelectedItems(event) {
+  var rows = mealsContainer.childNodes;
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    if (row.classList.contains('active')) {
+      removeItemById(row.id);
+    }
+  }
 }
 
 function removeItemById(id) {
