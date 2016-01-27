@@ -9,26 +9,26 @@
   </head>
   <body>
     <div class="container">
+
       <h1 class="text-center">Calorie Counter</h1>
-      <div class="col-sm-4 form">
-        <h3 class="text-center header">Add new meal</h3>
+      <div id="form">
+        <h3 class="text-center">Add new meal</h3>
         <input type="text" class="form-control" data-meal="name" placeholder="Name your meal" autofocus=""/>
         <input type="number" class="form-control" data-meal="calories" placeholder="Calories" min="0"/>
         <input type="datetime-local" class="form-control" data-meal="datetime"/>
         <button id="btn-submit" class="btn btn-primary btn-block" disabled>Add new meal</button>
       </div>
-      <div class="col-sm-8">
-        <h3 class="text-center header">Your meals</h3>
-        <table class = "table">
-          <thead>
-            <tr>
-              <th>Meal name</th>
-              <th>Calorie</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody class="meals-container"></tbody>
-        </table>
+
+      <div>
+        <h3 class="text-center">Your meals</h3>
+
+        <div class="row hidden-xs meals-header ">
+          <div class="col-sm-5">Name</div>
+          <div class="col-sm-2">Calories</div>
+          <div class="col-sm-5">Date</div>
+        </div>
+
+        <div id="meals-container"></div>
         <button id="btn-delete" class="btn btn-danger center-block">Delete selected</button>
       </div>
     </div>
@@ -36,6 +36,7 @@
     <script src="httpRequests.js"></script>
     <script src="config.js"></script>
     <script src="meals.js"></script>
+    <script src="template.js"></script>
     <script src="controller.js"></script>
     <script src="filter.js"></script>
   </body>

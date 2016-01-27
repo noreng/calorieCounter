@@ -7,6 +7,6 @@ function filter(date) {
     var row = e.parentNode;
     row.style.display = (date && !(elementDate === date))
       ? 'none'
-      : 'table-row';
+      : 'block';
   });
 }

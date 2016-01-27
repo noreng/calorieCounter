@@ -3,10 +3,10 @@
 var form, inputFields, submitButton, deleteButton, mealsContainer;
 var request = new Request();
 
-form = document.querySelector('.form');
+form = document.querySelector('#form');
 inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
-mealsContainer = document.querySelector('.meals-container');
+mealsContainer = document.querySelector('#meals-container');
 deleteButton = document.querySelector('#btn-delete');
 
 form.addEventListener("blur", validateInputs, true);
@@ -50,15 +50,6 @@ function insertItemsToDom(items) {
 function addItemToDom(item) {
   var element = createOneItem(item);
   mealsContainer.innerHTML += element;
-}
-
-function createOneItem(item) {
-  var element = `<tr id="${item.meal_id}">
-                   <td>${item.name}</td>
-                   <td>${item.calories}</td>
-                   <td class="meal-date">${formatDate(item.date)}</td>
-                 </tr>`;
-  return element;
 }
 
 function resetForm() {
