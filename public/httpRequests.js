@@ -8,10 +8,9 @@ function Request() {
     return this.createRequest('GET', url, null, cb);
   }
 
-  this.postItemToServer = function (item) {
+  this.postItemToServer = function (item, cb) {
     var data = JSON.stringify(item);
     var url = this.url + 'meals';
-    var cb = function (response) {console.log(response)};
     return this.createRequest('POST', url, data, cb);
   }
 

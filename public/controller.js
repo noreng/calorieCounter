@@ -61,7 +61,7 @@ function submitMeal(event) {
   event.preventDefault();
   var values = getInputValues();
   var meal = createMealItem(values);
-  request.postItemToServer(meal);
+  request.postItemToServer(meal, addItemToDom);
   resetForm();
 }
 

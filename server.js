@@ -25,8 +25,8 @@ app.get('/meals/:id', function (req, res) {
 
 app.post('/meals', function (req, res) {
   var attributes = req.body;
-  database.addMeal(attributes, function (sqlres) {
-    res.status(200).json({'status': 'ok'});
+  database.addMeal(attributes, function (newItemArray) {
+    res.status(200).json(newItemArray[0]);
   });
 });
 

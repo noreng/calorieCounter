@@ -31,7 +31,8 @@ function addMeal(attributes, callback) {
   var sql = 'INSERT INTO `meals` SET ?';
   connection.query(sql, attributes, function(err, res) {
     if (err) throw err;
-    callback(res);
+    var newId = res.insertId;
+    getMealById(newId, callback);
   });
 }
 
