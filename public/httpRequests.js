@@ -14,6 +14,11 @@ function Request() {
     return this.createRequest('POST', url, data, cb);
   }
 
+  this.removeItemFromServer = function (id, callback) {
+    var url = this.url + 'meals/' + id;
+    return this.createRequest('DELETE', url, null, callback);
+  }
+
   this.createRequest = function (method, url, data, cb) {
     var req = new XMLHttpRequest();
     req.open(method, url);

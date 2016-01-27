@@ -8,7 +8,6 @@ inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
 mealsContainer = document.querySelector('.meals-container');
 
-
 form.addEventListener("blur", validateInputs, true);
 submitButton.addEventListener('click', submitMeal);
 mealsContainer.addEventListener('click', selectItem);
@@ -16,6 +15,15 @@ mealsContainer.addEventListener('click', selectItem);
 function selectItem(event) {
   var row = event.target.parentNode;
   row.classList.toggle('active');
+}
+
+function removeItemById(id) {
+  request.removeItemFromServer(id, removeItemFromDom);
+}
+
+function removeItemFromDom(item) {
+  var element = document.getElementById(item.meal_id);
+  element.remove();
 }
 
 function getItemsFromServer() {
@@ -34,7 +42,7 @@ function addItemToDom(item) {
 }
 
 function createOneItem(item) {
-  var element = `<tr>
+  var element = `<tr id="${item.meal_id}">
                    <td>${item.name}</td>
                    <td>${item.calories}</td>
                    <td>${convertToDate(item.date)}</td>

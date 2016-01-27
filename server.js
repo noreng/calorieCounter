@@ -33,7 +33,7 @@ app.post('/meals', function (req, res) {
 app.delete('/meals/:id', function (req, res) {
   findMeal(req, res, function (meal) {
     database.removeMeal(meal.meal_id, function (sqlres) {
-      res.status(200).json( {status: 'ok'});
+      res.status(200).json(meal);
     });
   });
 });
