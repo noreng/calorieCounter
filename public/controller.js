@@ -21,12 +21,11 @@ function selectItem(event) {
 
 function removeSelectedItems(event) {
   var rows = mealsContainer.childNodes;
-  for (var i = 0; i < rows.length; i++) {
-    var row = rows[i];
+  [].forEach.call(rows, function(row) {
     if (row.classList.contains('active')) {
       removeItemById(row.id);
     }
-  }
+  });
 }
 
 function removeItemById(id) {
@@ -67,6 +66,7 @@ function resetForm() {
   submitButton.disabled = true;
 }
 
+// TODO refactor
 function validateInputs() {
   var isValid = false;
   for (var i = 0; i < inputFields.length; i++) {
@@ -86,21 +86,19 @@ function submitMeal(event) {
 
 function getInputValues() {
   var values = {};
-  for (var i = 0; i < inputFields.length; i++) {
-    var input = inputFields[i];
-    var attributes = input.getAttribute('data-meal');
-    values[attributes] = input.value;
-  }
+  [].forEach.call(inputFields, function(e) {
+    var attributes = e.getAttribute('data-meal');
+    values[attributes] = e.value;
+  });
   return values;
 }
 
 function resetInputValues() {
-  for (var i = 0; i < inputFields.length; i++) {
-    var input = inputFields[i];
-    var attribute = input.getAttribute('data-meal');
-    input.value = inputRules[attribute].defaultValue;
-    if (i === 0) input.focus();
-  }
+  [].forEach.call(inputFields, function(e, i) {
+    var attribute = e.getAttribute('data-meal');
+    e.value = inputRules[attribute].defaultValue;
+    if (i === 0) e.focus();
+  });
 }
 
 getItemsFromServer();
