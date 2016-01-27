@@ -49,11 +49,12 @@ function resetForm() {
 }
 
 function validateInputs() {
+  var isValid = false;
   for (var i = 0; i < inputFields.length; i++) {
     var input = inputFields[i];
-    if (input.value === '') submitButton.disabled = true;
+    if (input.value === '') isValid = true;
   }
-  submitButton.disabled = false;
+  submitButton.disabled = isValid;
 }
 
 function submitMeal(event) {
