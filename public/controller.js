@@ -56,7 +56,7 @@ function createOneItem(item) {
   var element = `<tr id="${item.meal_id}">
                    <td>${item.name}</td>
                    <td>${item.calories}</td>
-                   <td>${formatDate(item.date)}</td>
+                   <td class="meal-date">${formatDate(item.date)}</td>
                  </tr>`;
   return element;
 }

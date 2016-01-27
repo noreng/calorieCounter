@@ -28,3 +28,11 @@ function pad(number) {
   }
   return number;
 }
+
+// => yyyy/mm/dd
+function formatyyyymmdd(string) {
+  var date = new Date(string);
+  return date.getFullYear() +
+    '/' + pad((date.getMonth() + 1)) +
+    '/' + pad(date.getDate());
+}
