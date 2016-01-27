@@ -14,11 +14,7 @@
         <h3 class="text-center header">Add new meal</h3>
         <input type="text" class="form-control" data-meal="name" placeholder="Name your meal" autofocus=""/>
         <input type="number" class="form-control" data-meal="calories" placeholder="Calories" min="0"/>
-        <input type="number" class="form-control" data-meal="year"/>
-        <input type="number" class="form-control" data-meal="month" min="1" max="12"/>
-        <input type="number" class="form-control" data-meal="day" min="1" max="31"/>
-        <input type="number" class="form-control" data-meal="hour"  min="0" max="12"/>
-        <input type="number" class="form-control" data-meal="minutes" min="0" max="59"/>
+        <input type="datetime-local" class="form-control" data-meal="datetime" disabled/>
         <button id="btn-submit" class="btn btn-primary btn-block" disabled>Add new meal</button>
       </div>
       <div class="col-sm-8">
@@ -36,6 +32,7 @@
         <button id="btn-delete" class="btn btn-danger center-block">Delete selected</button>
       </div>
     </div>
+    <script src="date.js"></script>
     <script src="httpRequests.js"></script>
     <script src="config.js"></script>
     <script src="meals.js"></script>

@@ -9,15 +9,6 @@ var Meal = function (name, calories, date) {
 function createMealItem(values) {
   var name = values.name;
   var calories = values.calories;
-  var date = createDateFromInput(values);
-  return new Meal(name, calories, date)
-}
-
-function createDateFromInput(values) {
-  var date = values.year + '-' +
-             values.month + '-' +
-             values.day + ' ' +
-             values.hour + ':' +
-             values.minutes;
-  return date;
+  var date = values.datetime;
+  return new Meal(name, calories, date);
 }

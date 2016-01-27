@@ -30,7 +30,7 @@ function removeSelectedItems(event) {
 }
 
 function removeItemById(id) {
-  request.removeItemFromServer(id, removeItemFromDom);
+  request.removeItem(id, removeItemFromDom);
 }
 
 function removeItemFromDom(item) {
@@ -39,7 +39,7 @@ function removeItemFromDom(item) {
 }
 
 function getItemsFromServer() {
-  request.getAllItems(insertItemsToDom);
+  request.getAll(insertItemsToDom);
 }
 
 function insertItemsToDom(items) {
@@ -57,17 +57,9 @@ function createOneItem(item) {
   var element = `<tr id="${item.meal_id}">
                    <td>${item.name}</td>
                    <td>${item.calories}</td>
-                   <td>${convertToDate(item.date)}</td>
+                   <td>${formatDate(item.date)}</td>
                  </tr>`;
   return element;
-}
-
-function convertToDate(string) {
-  var date = new Date(string);
-  return [date.getFullYear(),
-          date.getMonth() + 1,
-          date.getDate()]
-          .join(' / ');
 }
 
 function resetForm() {
@@ -88,7 +80,7 @@ function submitMeal(event) {
   event.preventDefault();
   var values = getInputValues();
   var meal = createMealItem(values);
-  request.postItemToServer(meal, addItemToDom);
+  request.postItem(meal, addItemToDom);
   resetForm();
 }
 
