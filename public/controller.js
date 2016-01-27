@@ -8,8 +8,15 @@ inputFields = document.getElementsByTagName('input');
 submitButton = document.querySelector('#btn-submit');
 mealsContainer = document.querySelector('.meals-container');
 
+
 form.addEventListener("blur", validateInputs, true);
 submitButton.addEventListener('click', submitMeal);
+mealsContainer.addEventListener('click', selectItem);
+
+function selectItem(event) {
+  var row = event.target.parentNode;
+  row.classList.toggle('active');
+}
 
 function getItemsFromServer() {
   request.getAllItems(insertItemsToDom);
