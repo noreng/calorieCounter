@@ -1,7 +1,7 @@
 'use strict';
 
 var form, inputFields, submitButton, deleteButton, mealsContainer;
-var deleteAndFilter, filterButton;
+var dateNowField, customDateField, deleteAndFilter, filterButton;
 var request = new Request();
 
 init();
@@ -17,6 +17,8 @@ function init() {
 function initDomElements() {
   form = document.querySelector('#form');
   inputFields = document.getElementsByTagName('input');
+  dateNowField = document.querySelector('#input-datenow');
+  customDateField = document.querySelector('#input-datetime');
   submitButton = document.querySelector('#btn-submit');
   mealsContainer = document.querySelector('#meals-container');
   deleteButton = document.querySelector('#btn-delete');
@@ -26,10 +28,18 @@ function initDomElements() {
 
 function initEvents() {
   form.addEventListener('input', handleSubmitButtonBasedOnInputValidation, true);
+  dateNowField.addEventListener('input', addCustomDate, true);
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
   filterButton.addEventListener('click', filterSelected);
+}
+
+function addCustomDate(event) {
+  var dateNowField = event.target;
+  dateNowField.style.display = 'none';
+  customDateField.style.display = 'inline-block';
+  customDateField.focus();
 }
 
 function selectItem(event) {
@@ -95,7 +105,10 @@ function handleButtonsBasedOnSelection() {
 
 function areValidInputs() {
   return [].every.call(inputFields, function(input) {
-    return input.value.length !== 0;
+    if (input.hasAttribute('required')) {
+      return input.value.length !== 0;
+    }
+    return true
   });
 }
 
@@ -125,6 +138,8 @@ function getInputValues() {
 
 function resetForm() {
   resetInputValues();
+  dateNowField.style.display = 'block';
+  customDateField.style.display = 'none';
   submitButton.style.display = 'none';
 }
 
