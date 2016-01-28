@@ -97,7 +97,7 @@ function insertItemsToDom(items) {
 
 function addItemToDom(item) {
   var element = createOneItem(item);
-  mealsContainer.innerHTML += element;
+  mealsContainer.innerHTML = element + mealsContainer.innerHTML;
 }
 
 function handleSubmitButtonBasedOnInputValidation() {
