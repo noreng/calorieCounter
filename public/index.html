@@ -11,26 +11,36 @@
     <div class="container">
 
       <h1 class="text-center">Calorie Counter</h1>
-      <div id="form">
-        <h3 class="text-center">Add new meal</h3>
-        <input type="text" class="form-control" data-meal="name" placeholder="Name your meal" autofocus=""/>
-        <input type="number" class="form-control" data-meal="calories" placeholder="Calories" min="0"/>
-        <input type="datetime-local" class="form-control" data-meal="datetime"/>
-        <button id="btn-submit" class="btn btn-primary btn-block" disabled>Add new meal</button>
-      </div>
 
-      <div>
-        <h3 class="text-center">Your meals</h3>
+      <div id="meals-table" class="col-md-8 col-md-offset-2">
 
-        <div class="row hidden-xs meals-header ">
-          <div class="col-sm-5">Name</div>
-          <div class="col-sm-2">Calories</div>
-          <div class="col-sm-5">Date</div>
+        <div class="row hidden-xs meals-header">
+          <div class="col-sm-5 meal-data">name</div>
+          <div class="col-sm-2 meal-data middleColumn">calories</div>
+          <div class="col-sm-5 meal-data">date and time</div>
         </div>
 
         <div id="meals-container"></div>
-        <button id="btn-delete" class="btn btn-danger center-block">Delete selected</button>
+
+        <div id="form" class="row">
+          <div class="col-sm-5 meal-data">
+            <input type="text" class="meal-input" data-meal="name" placeholder="add new" autofocus=""/>
+          </div>
+          <div class="col-sm-2 meal-data middleColumn">
+            <input type="number" class="meal-input" data-meal="calories" placeholder="kCal" min="0"/>
+          </div>
+          <div class="col-sm-5 meal-data">
+            <input type="datetime-local" class="meal-input" data-meal="datetime" step="900"/>
+          </div>
+        </div>
+
+        <div class="buttons text-center">
+          <button id="btn-submit" class="btn btn-primary" disabled>Add new meal</button>
+          <button id="btn-delete" class="btn btn-danger">Delete selected</button>
+        </div>
+
       </div>
+
     </div>
     <script src="date.js"></script>
     <script src="httpRequests.js"></script>

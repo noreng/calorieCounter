@@ -1,20 +1,18 @@
 'use strict';
 
 function createOneItem(item) {
-  var element =
-    `<div id="${item.meal_id}" class="row meal-item">
-      <div class="col-sm-5">
-        <span class="visible-xs-inline">Name: </span>
+  return `
+    <div id="${item.meal_id}" class="row meal-row">
+      <div class="col-sm-5 meal-data meal-name">
         ${item.name}
       </div>
-      <div class="col-sm-2">
-        <span class="visible-xs-inline">Calories: </span>
+      <div class="col-sm-2 meal-data middleColumn">
         ${item.calories}
+        <span class="visible-xs-inline unit"> kCal</span>
       </div>
-      <div class="col-sm-5 meal-date">
-        <span class="visible-xs-inline">Date: </span>
+      <div class="col-sm-5 meal-data meal-date">
         ${formatDate(item.date)}
       </div>
-    </div>`;
-  return element;
+    </div>
+  `;
 }

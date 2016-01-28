@@ -1,19 +1,75 @@
-input {
-  margin-bottom: 10px;
-}
-
-td, th {
+.meals-header, .meal-row  {
   text-align: center;
 }
 
-.meals-header, .meal-item  {
-  text-align: center;
+.meals-header {
+  border-bottom: 2px solid #ddd;
+  font-weight: bold;
+  margin-top: 25px;
 }
 
-.meal-item:hover {
+.meal-row {
+  border-bottom: 1px solid #ddd;
+}
+
+.meal-row:hover {
   cursor: pointer;
+}
+
+.meal-data {
+  padding: 10px 0px;
 }
 
 .active {
   background-color: #eee;
+}
+
+.meal-input {
+  background: none;
+  border: 0;
+  color: #bbb;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.meal-input:focus {
+  outline: none;
+}
+
+.middleColumn {
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+}
+
+@media(max-width:767px){
+
+  .meal-data {
+    padding: 5px 0px;
+  }
+
+  .middleColumn {
+    border: none;
+    padding: 0px;
+  }
+
+  .meal-name {
+    font-weight: bold;
+  }
+
+  .meal-date {
+    color: #bbb;
+  }
+}
+
+.btn {
+  margin: 25px 10px 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
