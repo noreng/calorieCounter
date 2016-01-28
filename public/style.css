@@ -1,5 +1,11 @@
 body {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.6em;
   padding-top: 60px;
+}
+
+h1 {
+  font-weight: bold;
 }
 
 .meals-header, .meal-row  {
@@ -9,6 +15,7 @@ body {
 .meals-header {
   border-bottom: 2px solid #ddd;
   font-weight: bold;
+  font-size: 1.5em;
   margin-top: 25px;
 }
 

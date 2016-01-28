@@ -5,14 +5,15 @@
     <title>Calorie Counter</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
 
       <h1 class="text-center">Calorie Counter</h1>
 
-      <div id="meals-table" class="col-md-8 col-md-offset-2">
+      <div id="meals-table" class="col-md-12">
         <div class="row hidden-xs meals-header">
           <div class="col-sm-5 meal-data">name</div>
           <div class="col-sm-2 meal-data middleColumn">calories</div>
@@ -36,10 +37,10 @@
       <div class="navbar navbar-fixed-top navbar-default">
       	<div class="container">
           <div class="navbar-collapse text-center">
-            <button id="btn-submit" class="btn btn-primary navbar-btn">Add new meal</button>
+            <button id="btn-submit" class="btn btn-success navbar-btn">Add new meal</button>
             <div id="deleteAndFilter" class="text-center">
-              <button id="btn-delete" class="btn btn-danger navbar-btn">Delete selected</button>
               <button id="btn-filter" class="btn btn-info navbar-btn">Filter for selected day(s)</button>
+              <button id="btn-delete" class="btn btn-danger navbar-btn">Delete selected</button>
             </div>
           </div>
         </div>
