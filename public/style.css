@@ -1,3 +1,7 @@
+body {
+  padding-top: 60px;
+}
+
 .meals-header, .meal-row  {
   text-align: center;
 }
@@ -59,7 +63,7 @@
 }
 
 .btn {
-  margin: 25px 3px 25px;
+  margin-left: 8px;
 }
 
 #input-datetime {

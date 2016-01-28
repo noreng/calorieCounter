@@ -13,15 +13,11 @@
       <h1 class="text-center">Calorie Counter</h1>
 
       <div id="meals-table" class="col-md-8 col-md-offset-2">
-
         <div class="row hidden-xs meals-header">
           <div class="col-sm-5 meal-data">name</div>
           <div class="col-sm-2 meal-data middleColumn">calories</div>
           <div class="col-sm-5 meal-data">date and time</div>
         </div>
-
-        <div id="meals-container"></div>
-
         <div id="form" class="row">
           <div class="col-sm-5 meal-data">
             <input id="input-name" type="text" class="meal-input" data-meal="name" placeholder="add new" autofocus="" required/>
@@ -34,15 +30,19 @@
             <input id="input-datetime" type="datetime-local" class="meal-input" data-meal="datetime" step="900" required/>
           </div>
         </div>
+        <div id="meals-container"></div>
+      </div>
 
-        <div class="buttons text-center">
-          <button id="btn-submit" class="btn btn-primary">Add new meal</button>
-          <div id="deleteAndFilter" class="text-center">
-            <button id="btn-delete" class="btn btn-danger">Delete selected</button>
-            <button id="btn-filter" class="btn btn-default">Filter for selected day</button>
+      <div class="navbar navbar-fixed-top navbar-default">
+      	<div class="container">
+          <div class="navbar-collapse text-center">
+            <button id="btn-submit" class="btn btn-primary navbar-btn">Add new meal</button>
+            <div id="deleteAndFilter" class="text-center">
+              <button id="btn-delete" class="btn btn-danger navbar-btn">Delete selected</button>
+              <button id="btn-filter" class="btn btn-info navbar-btn">Filter for selected day(s)</button>
+            </div>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -53,5 +53,6 @@
     <script src="template.js"></script>
     <script src="filter.js"></script>
     <script src="controller.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </body>
 </html>
