@@ -1,6 +1,7 @@
 'use strict';
 
 var form, inputFields, submitButton, deleteButton, mealsContainer;
+var deleteAndFilter;
 var request = new Request();
 
 init();
@@ -10,7 +11,7 @@ function init() {
   initEvents();
   getItemsFromServer();
   resetForm();
-  handleDeleteButtonBasedOnInputValidation();
+  handleButtonsBasedOnSelection();
 }
 
 function initDomElements() {
@@ -19,6 +20,7 @@ function initDomElements() {
   submitButton = document.querySelector('#btn-submit');
   mealsContainer = document.querySelector('#meals-container');
   deleteButton = document.querySelector('#btn-delete');
+  deleteAndFilter = document.querySelector('#deleteAndFilter');
 }
 
 function initEvents() {
@@ -33,7 +35,7 @@ function selectItem(event) {
   if (row.classList.contains('meal-row')) {
    row.classList.toggle('active');
   }
-  handleDeleteButtonBasedOnInputValidation();
+  handleButtonsBasedOnSelection();
 }
 
 function removeSelectedItems(event) {
@@ -52,7 +54,7 @@ function removeItemById(id) {
 function removeItemFromDom(item) {
   var element = document.getElementById(item.meal_id);
   element.remove();
-  handleDeleteButtonBasedOnInputValidation();
+  handleButtonsBasedOnSelection();
 }
 
 function getItemsFromServer() {
@@ -76,9 +78,9 @@ function handleSubmitButtonBasedOnInputValidation() {
     : 'none';
 }
 
-function handleDeleteButtonBasedOnInputValidation() {
-  deleteButton.style.display = areSelectedRows()
-    ? 'inline'
+function handleButtonsBasedOnSelection() {
+  deleteAndFilter.style.display = areSelectedRows()
+    ? 'inline-block'
     : 'none';
 }
 
