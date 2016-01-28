@@ -10,6 +10,7 @@ function init() {
   initEvents();
   getItemsFromServer();
   resetForm();
+  handleDeleteButtonBasedOnInputValidation();
 }
 
 function initDomElements() {
@@ -21,7 +22,7 @@ function initDomElements() {
 }
 
 function initEvents() {
-  form.addEventListener('input', handleButtonBasedOnInputValidation, true);
+  form.addEventListener('input', handleSubmitButtonBasedOnInputValidation, true);
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
@@ -32,6 +33,7 @@ function selectItem(event) {
   if (row.classList.contains('meal-row')) {
    row.classList.toggle('active');
   }
+  handleDeleteButtonBasedOnInputValidation();
 }
 
 function removeSelectedItems(event) {
@@ -50,6 +52,7 @@ function removeItemById(id) {
 function removeItemFromDom(item) {
   var element = document.getElementById(item.meal_id);
   element.remove();
+  handleDeleteButtonBasedOnInputValidation();
 }
 
 function getItemsFromServer() {
@@ -67,8 +70,14 @@ function addItemToDom(item) {
   mealsContainer.innerHTML += element;
 }
 
-function handleButtonBasedOnInputValidation() {
+function handleSubmitButtonBasedOnInputValidation() {
   submitButton.style.display = areValidInputs()
+    ? 'inline'
+    : 'none';
+}
+
+function handleDeleteButtonBasedOnInputValidation() {
+  deleteButton.style.display = areSelectedRows()
     ? 'inline'
     : 'none';
 }
@@ -76,6 +85,13 @@ function handleButtonBasedOnInputValidation() {
 function areValidInputs() {
   return [].every.call(inputFields, function(input) {
     return input.value.length !== 0;
+  });
+}
+
+function areSelectedRows() {
+  var rows = document.querySelectorAll('.meal-row');
+  return [].some.call(rows, function(row) {
+    return row.classList.contains('active');
   });
 }
 
