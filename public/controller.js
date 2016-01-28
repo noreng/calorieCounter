@@ -1,7 +1,7 @@
 'use strict';
 
 var form, inputFields, submitButton, deleteButton, mealsContainer;
-var dateNowField, customDateField, deleteAndFilter, filterButton;
+var nameField, caloriesField, dateNowField, customDateField, deleteAndFilter, filterButton;
 var request = new Request();
 
 init();
@@ -17,6 +17,8 @@ function init() {
 function initDomElements() {
   form = document.querySelector('#form');
   inputFields = document.getElementsByTagName('input');
+  nameField = document.querySelector('#input-name');
+  caloriesField = document.querySelector('#input-calories');
   dateNowField = document.querySelector('#input-datenow');
   customDateField = document.querySelector('#input-datetime');
   submitButton = document.querySelector('#btn-submit');
@@ -28,11 +30,18 @@ function initDomElements() {
 
 function initEvents() {
   form.addEventListener('input', handleSubmitButtonBasedOnInputValidation, true);
+  caloriesField.addEventListener('input', showDateNowField);
   dateNowField.addEventListener('input', addCustomDate, true);
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
   filterButton.addEventListener('click', filterSelected);
+}
+
+function showDateNowField(event) {
+  if (areValidInputs()) {
+    dateNowField.style.display = 'block';
+  }
 }
 
 function addCustomDate(event) {
@@ -138,7 +147,7 @@ function getInputValues() {
 
 function resetForm() {
   resetInputValues();
-  dateNowField.style.display = 'block';
+  dateNowField.style.display = 'none';
   customDateField.style.display = 'none';
   submitButton.style.display = 'none';
 }
