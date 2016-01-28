@@ -16,7 +16,9 @@ deleteButton.addEventListener('click', removeSelectedItems);
 
 function selectItem(event) {
   var row = event.target.parentNode;
-  row.classList.toggle('active');
+  if (row.hasAttribute('class', 'meal-row')) {
+   row.classList.toggle('active');
+  }
 }
 
 function removeSelectedItems(event) {
