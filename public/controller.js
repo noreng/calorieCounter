@@ -1,7 +1,7 @@
 'use strict';
 
 var form, inputFields, submitButton, deleteButton, mealsContainer;
-var deleteAndFilter;
+var deleteAndFilter, filterButton;
 var request = new Request();
 
 init();
@@ -21,6 +21,7 @@ function initDomElements() {
   mealsContainer = document.querySelector('#meals-container');
   deleteButton = document.querySelector('#btn-delete');
   deleteAndFilter = document.querySelector('#deleteAndFilter');
+  filterButton = document.querySelector('#btn-filter');
 }
 
 function initEvents() {
@@ -28,6 +29,7 @@ function initEvents() {
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
+  filterButton.addEventListener('click', filterSelected);
 }
 
 function selectItem(event) {
@@ -36,6 +38,13 @@ function selectItem(event) {
    row.classList.toggle('active');
   }
   handleButtonsBasedOnSelection();
+  handleFilterView();
+}
+
+function handleFilterView() {
+  if (!areSelectedRows() && filterIsOn) {
+    removeFilter();
+  }
 }
 
 function removeSelectedItems(event) {
