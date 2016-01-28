@@ -27,10 +27,11 @@
             <input type="text" class="meal-input" data-meal="name" placeholder="add new" autofocus=""/>
           </div>
           <div class="col-sm-2 meal-data middleColumn">
-            <input type="number" class="meal-input" data-meal="calories" placeholder="kCal" min="0"/>
+            <input type="number" class="meal-input" data-meal="calories" min="0"/>
           </div>
           <div class="col-sm-5 meal-data">
-            <input type="datetime-local" class="meal-input" data-meal="datetime" step="900"/>
+            <input type="text" class="meal-input" data-meal="datenow" disabled/>
+            <input type="datetime-local" class="meal-input" data-meal="datetime" step="900" style="display: none"/>
           </div>
         </div>
 

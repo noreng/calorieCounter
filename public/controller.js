@@ -1,6 +1,7 @@
 'use strict';
 
 var form, inputFields, submitButton, deleteButton, mealsContainer;
+var calorieInput;
 var request = new Request();
 
 form = document.querySelector('#form');
@@ -9,20 +10,20 @@ submitButton = document.querySelector('#btn-submit');
 mealsContainer = document.querySelector('#meals-container');
 deleteButton = document.querySelector('#btn-delete');
 
-form.addEventListener("blur", validateInputs, true);
+form.addEventListener("input", validateInputs, true);
 submitButton.addEventListener('click', submitMeal);
 mealsContainer.addEventListener('click', selectItem);
 deleteButton.addEventListener('click', removeSelectedItems);
 
 function selectItem(event) {
   var row = event.target.parentNode;
-  if (row.hasAttribute('class', 'meal-row')) {
+  if (row.classList.contains('meal-row')) {
    row.classList.toggle('active');
   }
 }
 
 function removeSelectedItems(event) {
-  var rows = mealsContainer.childNodes;
+  var rows = document.querySelectorAll('.meal-row');
   [].forEach.call(rows, function(row) {
     if (row.classList.contains('active')) {
       removeItemById(row.id);
@@ -61,6 +62,7 @@ function resetForm() {
 
 // TODO refactor
 function validateInputs() {
+  console.log('called');
   var isValid = false;
   for (var i = 0; i < inputFields.length; i++) {
     var input = inputFields[i];
