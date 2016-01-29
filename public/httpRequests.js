@@ -4,27 +4,38 @@ function Request() {
   this.url = 'http://localhost:3000/';
 
   this.getAll = function (cb) {
-    var url = this.url + 'meals';
-    return sendRequest('GET', url, null, cb);
+    return sendRequest({
+      method: 'GET',
+      url: this.url + 'meals',
+      cb: cb
+    });
   }
 
   this.postItem = function (data, cb) {
-    var url = this.url + 'meals';
-    return sendRequest('POST', url, data, cb);
+    return sendRequest({
+      method: 'POST',
+      url: this.url + 'meals',
+      data: data,
+      cb: cb
+    });
   }
 
-  this.removeItem = function (id, callback) {
-    var url = this.url + 'meals/' + id;
-    return sendRequest('DELETE', url, null, callback);
+  this.removeItem = function (id, cb) {
+    return sendRequest({
+      method: 'DELETE',
+      url: this.url + 'meals/' + id,
+      data: data,
+      cb: cb
+    });
   }
 }
 
-function sendRequest(method, url, data, cb) {
+function sendRequest(options) {
   var req = new XMLHttpRequest();
-  req.open(method, url);
+  req.open(options.method, options.url);
   req.setRequestHeader('Content-Type', 'application/json');
-  req.send(data && JSON.stringify(data));
+  req.send(options.data && JSON.stringify(options.data));
   req.onload = function () {
-    return cb(JSON.parse(req.response));
+    return options.cb(JSON.parse(req.response));
   }
 }
