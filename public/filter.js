@@ -1,39 +1,43 @@
 'use strict';
 
-var filterIsOn = false;
+function Filter() {
+  var _this = this;
+  this.isOn = false;
 
-function filterSelected(event) {
-  filterIsOn = true;
-  filter(gatDatesOfSelectedRows());
-}
+  this.filterSelected = function () {
+    _this.isOn = true;
+    _this.filter(_this.getDatesOfSelectedRows());
+  }
 
-function removeFilter() {
-  filter();
-}
+  this.filter = function (date) {
+    var elements = document.querySelectorAll('.meal-date');
+    [].forEach.call(elements, function(e) {
+      var elementDate = formatyyyymmdd(e.innerText);
+      var row = e.parentNode;
+      row.style.display = (date && (date.indexOf(elementDate) === -1))
+        ? 'none'
+        : 'block';
+    });
+  }
 
-function filter(date) {
-  var elements = document.querySelectorAll('.meal-date');
-  [].forEach.call(elements, function(e) {
-    var elementDate = formatyyyymmdd(e.innerText);
-    var row = e.parentNode;
-    row.style.display = (date && (date.indexOf(elementDate) === -1))
-      ? 'none'
-      : 'block';
-  });
-}
+  this.getDatesOfSelectedRows = function () {
+    var dates = [];
+    var elements = document.querySelectorAll('.meal-date');
+    [].forEach.call(elements, function(e) {
+      var date = _this.getDateFromItem(e);
+      if (date && dates.indexOf(date) === -1) dates.push(date);
+    });
+    return dates !== [] ? dates : '';
+  }
 
-function gatDatesOfSelectedRows() {
-  var dates = [];
-  var elements = document.querySelectorAll('.meal-date');
-  [].forEach.call(elements, function(e) {
-    var date = getDateFromItem(e);
-    if (date && dates.indexOf(date) === -1) dates.push(date);
-  });
-  return dates !== [] ? dates : '';
-}
+  this.getDateFromItem = function (element) {
+    if (element.parentNode.classList.contains('active')) {
+      return formatyyyymmdd(element.innerText);
+    }
+  }
 
-function getDateFromItem(element) {
-  if (element.parentNode.classList.contains('active')) {
-    return formatyyyymmdd(element.innerText);
+  this.remove = function () {
+    _this.isOn = false;
+    this.filter();
   }
 }

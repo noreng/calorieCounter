@@ -3,6 +3,7 @@
 var form, inputFields, submitButton, deleteButton, mealsContainer;
 var nameField, caloriesField, dateNowField, customDateField, deleteAndFilter, filterButton;
 var request = new Request();
+var filter = new Filter();
 
 init();
 
@@ -35,7 +36,7 @@ function initEvents() {
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
-  filterButton.addEventListener('click', filterSelected);
+  filterButton.addEventListener('click', filter.filterSelected);
 }
 
 function showDateNowField(event) {
@@ -61,8 +62,8 @@ function selectItem(event) {
 }
 
 function handleFilterView() {
-  if (!areSelectedRows() && filterIsOn) {
-    removeFilter();
+  if (!areSelectedRows() && filter.isOn) {
+    filter.remove();
   }
 }
 
