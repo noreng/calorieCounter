@@ -1,9 +1,11 @@
 'use strict';
 
 var Meal = function (name, calories, date) {
-  this.name = name;
-  this.calories = calories;
-  this.date = date;
+  return {
+    name: name,
+    calories: calories,
+    date: date,
+  }
 }
 
 function createMealItem(values) {
