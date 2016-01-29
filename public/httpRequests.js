@@ -24,7 +24,6 @@ function Request() {
     return sendRequest({
       method: 'DELETE',
       url: this.url + 'meals/' + id,
-      data: data,
       cb: cb
     });
   }
