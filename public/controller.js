@@ -1,7 +1,9 @@
 'use strict';
 
-var form, inputFields, submitButton, deleteButton, mealsContainer;
-var nameField, caloriesField, dateNowField, customDateField, deleteAndFilter, filterButton;
+var form, inputFields, nameField, caloriesField, dateNowField, customDateField,
+submitButton, deleteButton, filterButton,
+mealsContainer, deleteAndFilter;
+
 var request = new Request();
 var filter = new Filter();
 
@@ -12,7 +14,7 @@ function init() {
   initEvents();
   getItemsFromServer();
   resetForm();
-  handleButtonsBasedOnSelection();
+  handleDeleteAndFilterButtonStatus();
 }
 
 function initDomElements() {
@@ -30,35 +32,30 @@ function initDomElements() {
 }
 
 function initEvents() {
-  form.addEventListener('input', handleSubmitButtonBasedOnInputValidation, true);
+  form.addEventListener('input', handleSubmitButtonStatus, true);
   nameField.addEventListener('input', showInputFields);
   dateNowField.addEventListener('input', showCustomDateField, true);
-  dateNowField.addEventListener('keydown', submitEnter, false);
-  customDateField.addEventListener('keydown', submitEnter, false);
+  dateNowField.addEventListener('keydown', submitWithEnter, false);
+  customDateField.addEventListener('keydown', submitWithEnter, false);
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
   filterButton.addEventListener('click', filter.filterSelected);
 }
 
-function submitEnter(event) {
-  var ENTER = 13;
-  if (event.keyCode === ENTER && areValidInputs()) {
-    submitMeal(event);
-  }
+function getItemsFromServer() {
+  request.getAll(insertItemsToDom);
 }
 
-function showInputFields(event) {
-  caloriesField.style.display = 'block';
-  if (customDateField.style.display === 'none') {
-    dateNowField.style.display = 'block';
-  }
+function insertItemsToDom(items) {
+  items.forEach(function(item) {
+    addItemToDom(item);
+  });
 }
 
-function showCustomDateField(event) {
-  dateNowField.style.display = 'none';
-  customDateField.style.display = 'inline-block';
-  customDateField.focus();
+function addItemToDom(item) {
+  var element = createOneItem(item);
+  mealsContainer.innerHTML = element + mealsContainer.innerHTML;
 }
 
 function selectItem(event) {
@@ -66,14 +63,8 @@ function selectItem(event) {
   if (row.classList.contains('meal-row')) {
    row.classList.toggle('active');
   }
-  handleButtonsBasedOnSelection();
+  handleDeleteAndFilterButtonStatus();
   handleFilterView();
-}
-
-function handleFilterView() {
-  if (!areSelectedRows() && filter.isOn) {
-    filter.removeFilter();
-  }
 }
 
 function removeSelectedItems(event) {
@@ -92,33 +83,25 @@ function removeItemById(id) {
 function removeItemFromDom(item) {
   var element = document.getElementById(item.meal_id);
   element.remove();
-  handleButtonsBasedOnSelection();
+  handleDeleteAndFilterButtonStatus();
 }
 
-function getItemsFromServer() {
-  request.getAll(insertItemsToDom);
+function showInputFields(event) {
+  caloriesField.style.display = 'block';
+  if (customDateField.style.display === 'none') {
+    dateNowField.style.display = 'block';
+  }
 }
 
-function insertItemsToDom(items) {
-  items.forEach(function(item) {
-    addItemToDom(item);
-  });
+function showCustomDateField(event) {
+  dateNowField.style.display = 'none';
+  customDateField.style.display = 'inline-block';
+  customDateField.focus();
 }
 
-function addItemToDom(item) {
-  var element = createOneItem(item);
-  mealsContainer.innerHTML = element + mealsContainer.innerHTML;
-}
-
-function handleSubmitButtonBasedOnInputValidation() {
+function handleSubmitButtonStatus() {
   submitButton.style.display = areValidInputs()
     ? 'inline'
-    : 'none';
-}
-
-function handleButtonsBasedOnSelection() {
-  deleteAndFilter.style.display = areSelectedRows()
-    ? 'inline-block'
     : 'none';
 }
 
@@ -131,11 +114,30 @@ function areValidInputs() {
   });
 }
 
+function handleDeleteAndFilterButtonStatus() {
+  deleteAndFilter.style.display = areSelectedRows()
+    ? 'inline-block'
+    : 'none';
+}
+
 function areSelectedRows() {
   var rows = document.querySelectorAll('.meal-row');
   return [].some.call(rows, function(row) {
     return row.classList.contains('active');
   });
+}
+
+function handleFilterView() {
+  if (!areSelectedRows() && filter.isOn) {
+    filter.removeFilter();
+  }
+}
+
+function submitWithEnter(event) {
+  var ENTER = 13;
+  if (event.keyCode === ENTER && areValidInputs()) {
+    submitMeal(event);
+  }
 }
 
 function submitMeal(event) {
