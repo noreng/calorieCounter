@@ -36,7 +36,7 @@ function initEvents() {
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
-  filterButton.addEventListener('click', filter.filterSelectedRows);
+  filterButton.addEventListener('click', filter.filterSelected);
 }
 
 function showInputFields(event) {
@@ -61,7 +61,7 @@ function selectItem(event) {
 
 function handleFilterView() {
   if (!areSelectedRows() && filter.isOn) {
-    filter.remove();
+    filter.removeFilter();
   }
 }
 

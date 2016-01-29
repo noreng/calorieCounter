@@ -3,52 +3,71 @@
 function Filter() {
   var _this = this;
   this.isOn = false;
-
-  this.filterSelectedRows = function () {
-    _this.isOn = true;
-    _this.filterView();
+  this.elements;
+  this.conditions = [];
+  this.config = {
+    cells: '.meal-date',
+    rows: '.meal-row',
+    format: formatyyyymmdd
   }
 
-  this.filterView = function () {
-    var elements = _this.getElements('.meal-date');
-    var date = _this.getDatesOfSelectedRows(elements);
-    [].forEach.call(elements, function(e) {
-      var elementDate = formatyyyymmdd(e.innerText);
-      var row = e.parentNode;
-      row.style.display = (date.indexOf(elementDate) === -1)
-        ? 'none'
-        : 'block';
-    });
+  this.filterSelected = function () {
+    _this.isOn = true;
+    _this.elements = _this.getElements(_this.config.cells);
+    _this.conditions = [];
+    _this.setConditions();
+    _this.filterView();
   }
 
   this.getElements = function (selector) {
     return document.querySelectorAll(selector);
   }
 
-  this.getDatesOfSelectedRows = function (elements) {
-    var dates = [];
-    [].forEach.call(elements, function(e) {
-      var date = _this.getDateFromItem(e);
-      if (date && dates.indexOf(date) === -1) dates.push(date);
+  this.setConditions = function () {
+    [].forEach.call(_this.elements, function(e) {
+      if (isSelected(e)) {
+        var value = _this.getValue(e);
+        if (!isInConditions(value)) {
+          _this.conditions.push(value);
+        }
+      }
     });
-    return dates !== [] ? dates : '';
   }
 
-  this.getDateFromItem = function (element) {
-    if (element.parentNode.classList.contains('active')) {
-      return formatyyyymmdd(element.innerText);
+  this.filterView = function () {
+    [].forEach.call(_this.elements, function(e) {
+      var value = _this.getValue(e);
+      var row = e.parentNode;
+      row.style.display = (!isInConditions(value))
+        ? 'none'
+        : 'block';
+    });
+  }
+
+  function isSelected(element) {
+    return element.parentNode.classList.contains('active');
+  }
+
+  this.getValue = function (element) {
+    if (_this.config.format) {
+      return _this.config.format(element.innerText);
     }
+    return element.innerText;
   }
 
-  this.remove = function () {
+  function isInConditions(value) {
+    return _this.conditions.indexOf(value) !== -1;
+  }
+
+  this.removeFilter = function () {
     _this.isOn = false;
     _this.resetView();
   }
 
   this.resetView = function () {
-    var rows = _this.getElements('.meal-row');
-    [].forEach.call(rows, function(r) {
-      r.style.display = 'block';
+    var rows = _this.getElements(_this.config.rows);
+    [].forEach.call(rows, function(row) {
+      row.style.display = 'block';
     });
   }
 }
