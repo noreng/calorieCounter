@@ -36,7 +36,7 @@ function initEvents() {
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
-  filterButton.addEventListener('click', filter.filterSelected);
+  filterButton.addEventListener('click', filter.filterSelectedRows);
 }
 
 function showDateNowField(event) {

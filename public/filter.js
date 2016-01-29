@@ -4,25 +4,29 @@ function Filter() {
   var _this = this;
   this.isOn = false;
 
-  this.filterSelected = function () {
+  this.filterSelectedRows = function () {
     _this.isOn = true;
-    _this.filter(_this.getDatesOfSelectedRows());
+    _this.filterView();
   }
 
-  this.filter = function (date) {
-    var elements = document.querySelectorAll('.meal-date');
+  this.filterView = function () {
+    var elements = _this.getElements('.meal-date');
+    var date = _this.getDatesOfSelectedRows(elements);
     [].forEach.call(elements, function(e) {
       var elementDate = formatyyyymmdd(e.innerText);
       var row = e.parentNode;
-      row.style.display = (date && (date.indexOf(elementDate) === -1))
+      row.style.display = (date.indexOf(elementDate) === -1)
         ? 'none'
         : 'block';
     });
   }
 
-  this.getDatesOfSelectedRows = function () {
+  this.getElements = function (selector) {
+    return document.querySelectorAll(selector);
+  }
+
+  this.getDatesOfSelectedRows = function (elements) {
     var dates = [];
-    var elements = document.querySelectorAll('.meal-date');
     [].forEach.call(elements, function(e) {
       var date = _this.getDateFromItem(e);
       if (date && dates.indexOf(date) === -1) dates.push(date);
@@ -38,6 +42,13 @@ function Filter() {
 
   this.remove = function () {
     _this.isOn = false;
-    this.filter();
+    _this.resetView();
+  }
+
+  this.resetView = function () {
+    var rows = _this.getElements('.meal-row');
+    [].forEach.call(rows, function(r) {
+      r.style.display = 'block';
+    });
   }
 }
