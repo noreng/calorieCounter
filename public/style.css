@@ -46,8 +46,9 @@ h1 {
 .meal-input {
   background: none;
   border: 0;
-  color: #bbb;
+  color: #555;
   display: block;
+  font-weight: bold;
   margin: 0 auto;
   padding: 0;
   text-align: center;

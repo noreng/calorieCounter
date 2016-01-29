@@ -31,22 +31,20 @@ function initDomElements() {
 
 function initEvents() {
   form.addEventListener('input', handleSubmitButtonBasedOnInputValidation, true);
-  caloriesField.addEventListener('input', showDateNowField);
-  dateNowField.addEventListener('input', addCustomDate, true);
+  nameField.addEventListener('input', showInputFields);
+  dateNowField.addEventListener('input', showCustomDateField, true);
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
   filterButton.addEventListener('click', filter.filterSelectedRows);
 }
 
-function showDateNowField(event) {
-  if (areValidInputs()) {
-    dateNowField.style.display = 'block';
-  }
+function showInputFields(event) {
+  caloriesField.style.display = 'block';
+  dateNowField.style.display = 'block';
 }
 
-function addCustomDate(event) {
-  var dateNowField = event.target;
+function showCustomDateField(event) {
   dateNowField.style.display = 'none';
   customDateField.style.display = 'inline-block';
   customDateField.focus();
@@ -148,6 +146,7 @@ function getInputValues() {
 
 function resetForm() {
   resetInputValues();
+  caloriesField.style.display = 'none';
   dateNowField.style.display = 'none';
   customDateField.style.display = 'none';
   submitButton.style.display = 'none';
