@@ -4,8 +4,16 @@ body {
   padding-top: 60px;
 }
 
+.navbar {
+  min-height: 0px;
+}
+
 h1 {
   font-weight: bold;
+}
+
+#form {
+  border-bottom: 1px solid #ddd;
 }
 
 .meals-header, .meal-row  {
