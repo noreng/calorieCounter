@@ -33,15 +33,26 @@ function initEvents() {
   form.addEventListener('input', handleSubmitButtonBasedOnInputValidation, true);
   nameField.addEventListener('input', showInputFields);
   dateNowField.addEventListener('input', showCustomDateField, true);
+  dateNowField.addEventListener('keydown', submitEnter, false);
+  customDateField.addEventListener('keydown', submitEnter, false);
   submitButton.addEventListener('click', submitMeal);
   mealsContainer.addEventListener('click', selectItem);
   deleteButton.addEventListener('click', removeSelectedItems);
   filterButton.addEventListener('click', filter.filterSelected);
 }
 
+function submitEnter(event) {
+  var ENTER = 13;
+  if (event.keyCode === ENTER && areValidInputs()) {
+    submitMeal(event);
+  }
+}
+
 function showInputFields(event) {
   caloriesField.style.display = 'block';
-  dateNowField.style.display = 'block';
+  if (customDateField.style.display === 'none') {
+    dateNowField.style.display = 'block';
+  }
 }
 
 function showCustomDateField(event) {
